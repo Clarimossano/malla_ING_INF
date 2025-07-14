@@ -8,25 +8,45 @@ body {
 
 h1 {
     color: #d81b60;
+    margin-bottom: 20px;
 }
 
 #malla {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-    margin-top: 30px;
+    justify-items: center;
+    align-items: start;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.columna h2 {
+    color: #b30059;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    border-bottom: 2px solid #d81b60;
+    padding-bottom: 5px;
 }
 
 .ramo {
     background-color: #f8bbd0;
     border: 2px solid #d81b60;
-    padding: 10px;
-    width: 200px;
+    padding: 8px;
+    min-width: 160px;
     border-radius: 8px;
     cursor: not-allowed;
     opacity: 0.5;
     transition: 0.3s ease;
+    text-align: center;
+    font-size: 0.9em;
 }
 
 .ramo.activo {
@@ -39,3 +59,4 @@ h1 {
     color: white;
     text-decoration: line-through;
 }
+
