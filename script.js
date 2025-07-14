@@ -63,12 +63,20 @@ const ramos = [
 
 const aprobados = new Set();
 
-function crearColumna(titulo) {
+function crearColumna(titulo, esOptativo = false) {
     const div = document.createElement("div");
     div.classList.add("columna");
     const h2 = document.createElement("h2");
     h2.textContent = titulo;
     div.appendChild(h2);
+
+    if (esOptativo) {
+        const contador = document.createElement("div");
+        contador.classList.add("contador-optativos");
+        contador.textContent = "Horas optativas aprobadas: 0 / 270 hs";
+        div.appendChild(contador);
+    }
+
     return div;
 }
 
@@ -95,22 +103,18 @@ function renderMalla() {
         "Inglés"
     ];
 
-    // Crear columnas con subsecciones
     const columnas = titulosColumnas.map(titulo => {
-        const col = crearColumna(titulo);
-        const sub1 = crearSubseccion("Primer Cuatrimestre");
-        const sub2 = crearSubseccion("Segundo Cuatrimestre");
-        col.appendChild(sub1);
-        col.appendChild(sub2);
-
-        // Para Optativos agregar contador
         if (titulo === "Optativos") {
-            const contador = document.createElement("div");
-            contador.classList.add("contador-optativos");
-            contador.textContent = "Horas optativas aprobadas: 0 / 270 hs";
-            col.appendChild(contador);
+            // Optativos sin subsecciones
+            return crearColumna(titulo, true);
+        } else {
+            const col = crearColumna(titulo);
+            const sub1 = crearSubseccion("Primer Cuatrimestre");
+            const sub2 = crearSubseccion("Segundo Cuatrimestre");
+            col.appendChild(sub1);
+            col.appendChild(sub2);
+            return col;
         }
-        return col;
     });
 
     // Insertar ramos
@@ -133,17 +137,21 @@ function renderMalla() {
         }
 
         const col = columnas[ramo.columna - 1];
-        const subContenedor = ramo.cuatrimestre === 1 
-            ? col.querySelector(".subseccion:nth-child(2)")
-            : col.querySelector(".subseccion:nth-child(3)");
 
-        subContenedor.appendChild(div);
+        if (ramo.columna === 6) {
+            // Optativos sin divisiones
+            col.appendChild(div);
+        } else {
+            const subContenedor = ramo.cuatrimestre === 1 
+                ? col.querySelector(".subseccion:nth-child(2)")
+                : col.querySelector(".subseccion:nth-child(3)");
+            subContenedor.appendChild(div);
+        }
     });
 
     // Actualizar contador optativos
     const horasOptativas = Array.from(aprobados)
         .filter(id => id >= 37 && id <= 47).length * 30;
-
     const contadorDiv = columnas[5].querySelector(".contador-optativos");
     contadorDiv.textContent = `Horas optativas aprobadas: ${horasOptativas} / 270 hs`;
 
