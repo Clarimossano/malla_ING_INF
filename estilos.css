@@ -26,6 +26,10 @@ h1 {
     gap: 10px;
     flex: 1;
     min-width: 160px;
+    border: 2px solid #d81b60; /* borde rosa */
+    border-radius: 15px;       /* bordes redondeados */
+    padding: 15px;             /* espacio interno */
+    background-color: #fff0f5; /* un fondo muy claro rosa para diferenciar */
 }
 
 .columna h2 {
@@ -37,25 +41,35 @@ h1 {
 }
 
 .ramo {
-    background-color: #f8bbd0;
+    background-color: #880e4f; /* rosa oscuro */
     border: 2px solid #d81b60;
     padding: 8px;
     border-radius: 8px;
     cursor: not-allowed;
-    opacity: 0.5;
-    transition: 0.3s ease;
+    opacity: 0.7;
+    transition: 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     font-size: 0.9em;
+    color: white;
+    box-shadow: 0 2px 5px rgba(136, 14, 79, 0.5); /* sombra rosa */
 }
 
 .ramo.activo {
     cursor: pointer;
     opacity: 1;
+    box-shadow: 0 4px 10px rgba(136, 14, 79, 0.7);
+}
+
+.ramo.activo:hover {
+    box-shadow: 0 6px 15px rgba(136, 14, 79, 0.9);
 }
 
 .ramo.aprobado {
-    background-color: #f06292;
-    color: white;
+    background-color: #f8bbd0; /* rosa claro */
+    color: #880e4f;            /* texto rosa oscuro para contraste */
     text-decoration: line-through;
+    opacity: 1;
+    box-shadow: none;
+    cursor: default;
 }
 
