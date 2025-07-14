@@ -29,7 +29,7 @@ h1 {
     border: 2px solid #d81b60; /* borde rosa */
     border-radius: 15px;       /* bordes redondeados */
     padding: 15px;             /* espacio interno */
-    background-color: #fff0f5; /* un fondo muy claro rosa para diferenciar */
+    background-color: #fff0f5; /* fondo muy claro rosa */
 }
 
 .columna h2 {
@@ -52,6 +52,7 @@ h1 {
     font-size: 0.9em;
     color: white;
     box-shadow: 0 2px 5px rgba(136, 14, 79, 0.5); /* sombra rosa */
+    user-select: none; /* no seleccionable */
 }
 
 .ramo.activo {
@@ -66,10 +67,10 @@ h1 {
 
 .ramo.aprobado {
     background-color: #f8bbd0; /* rosa claro */
-    color: #880e4f;            /* texto rosa oscuro para contraste */
+    color: #880e4f;            /* texto rosa oscuro */
     text-decoration: line-through;
     opacity: 1;
     box-shadow: none;
-    cursor: default;
+    cursor: pointer; /* sigue siendo clickeable para desmarcar */
 }
 
