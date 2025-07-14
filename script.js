@@ -2,8 +2,8 @@ const ramos = [
     // 1er año
     { id: 1, nombre: "Introducción a la Programación", requisitos: [], columna: 1, cuatrimestre: 1 },
     { id: 2, nombre: "Álgebra Lineal", requisitos: [], columna: 1, cuatrimestre: 1 },
-    { id: 3, nombre: "Organización de Computadoras", requisitos: [], columna: 1, cuatrimestre: 2 },
-    { id: 4, nombre: "Análisis Matemático I", requisitos: [], columna: 1, cuatrimestre: 2 },
+    { id: 3, nombre: "Organización de Computadoras", requisitos: [], columna: 1, cuatrimestre: 1 },
+    { id: 4, nombre: "Análisis Matemático I", requisitos: [], columna: 1, cuatrimestre: 1 },
     { id: 5, nombre: "Metodología de la Programación", requisitos: [1], columna: 1, cuatrimestre: 2 },
     { id: 6, nombre: "Análisis Matemático II", requisitos: [4], columna: 1, cuatrimestre: 2 },
     { id: 7, nombre: "Física Mecánica", requisitos: [2,4], columna: 1, cuatrimestre: 2 },
@@ -12,8 +12,8 @@ const ramos = [
     // 2do año
     { id: 9, nombre: "Matemática Discreta", requisitos: [2], columna: 2, cuatrimestre: 1 },
     { id:10, nombre: "Teoría de la Información", requisitos: [3], columna: 2, cuatrimestre: 1 },
-    { id:11, nombre: "Desarrollo Sist. Programas", requisitos: [5,8], columna: 2, cuatrimestre: 2 },
-    { id:12, nombre: "Probabilidades y Estadística", requisitos: [2,6], columna: 2, cuatrimestre: 2 },
+    { id:11, nombre: "Desarrollo Sist. Programas", requisitos: [5,8], columna: 2, cuatrimestre: 1 },
+    { id:12, nombre: "Probabilidades y Estadística", requisitos: [2,6], columna: 2, cuatrimestre: 1 },
     { id:13, nombre: "Electricidad y Magnetismo", requisitos: [7], columna: 2, cuatrimestre: 2 },
     { id:14, nombre: "Bases de Datos", requisitos: [5,8], columna: 2, cuatrimestre: 2 },
     { id:15, nombre: "Programación Concurrente", requisitos: [5,8], columna: 2, cuatrimestre: 2 },
@@ -23,23 +23,24 @@ const ramos = [
     { id:17, nombre: "Lógica Computacional", requisitos: [2], columna: 3, cuatrimestre: 1 },
     { id:18, nombre: "Sistemas Operativos I", requisitos: [3,5,8], columna: 3, cuatrimestre: 1 },
     { id:19, nombre: "Org. Empresarial y Negocios", requisitos: [5,8], columna: 3, cuatrimestre: 1 },
-    { id:20, nombre: "Modelado OO", requisitos: [15], columna: 3, cuatrimestre: 2 },
+    { id:20, nombre: "Modelado OO", requisitos: [15], columna: 3, cuatrimestre: 1 },
     { id:22, nombre: "Teoría de Autómatas", requisitos: [8,17], columna: 3, cuatrimestre: 2 },
     { id:23, nombre: "Sistemas Operativos II", requisitos: [18], columna: 3, cuatrimestre: 2 },
     { id:24, nombre: "Métodos de Simulación", requisitos: [12,16], columna: 3, cuatrimestre: 2 },
 
-   // 4to año (id 25 a 32)
+    // 4to año
     { id:25, nombre: "Formulación y Proyectos", requisitos: [19], columna: 4, cuatrimestre: 1 },
     { id:26, nombre: "Calidad Software", requisitos: [20], columna: 4, cuatrimestre: 1 },
-    { id:27, nombre: "Arquitectura de Redes", requisitos: [23], columna: 4, cuatrimestre: 2 },
-    { id:28, nombre: "Ingeniería del Conocimiento", requisitos: [17,20], columna: 4, cuatrimestre: 2 },
-    { id:29, nombre: "Arq. Computadoras Paralelas", requisitos: [23,27], columna: 4, cuatrimestre: 1 },
-    { id:30, nombre: "Sistemas de Información", requisitos: [20], columna: 4, cuatrimestre: 1 },
+    { id:27, nombre: "Arquitectura de Redes", requisitos: [23], columna: 4, cuatrimestre: 1 },
+    { id:28, nombre: "Ingeniería del Conocimiento", requisitos: [17,20], columna: 4, cuatrimestre: 1 },
+    { id:29, nombre: "Arq. Computadoras Paralelas", requisitos: [23,27], columna: 4, cuatrimestre: 2 },
+    { id:30, nombre: "Sistemas de Información", requisitos: [20], columna: 4, cuatrimestre: 2 },
     { id:32, nombre: "Seguridad y Auditoría", requisitos: [23], columna: 4, cuatrimestre: 2 },
 
-    // 5to año (id 33 a 36)
-    { id:33, nombre: "Ingeniería Software I", requisitos: [30], columna: 5, cuatrimestre: 2 },
-    { id:34, nombre: "Sistemas Inteligentes", requisitos: [9,12,16], columna: 5, cuatrimestre: 2 },
+    // 5to año
+    { id:33, nombre: "Ingeniería Software I", requisitos: [30], columna: 5, cuatrimestre: 1 },
+    { id:34, nombre: "Sistemas Inteligentes", requisitos: [9,12,16], columna: 5, cuatrimestre: 1 },
+    { id:35, nombre: "Legislación, Ética y Ejercicio Profesional", requisitos: [48, 37,38,39,40,41,42,43,44,45,46,47], columna: 5, cuatrimestre: 2 }, 
     { id:36, nombre: "Ingeniería Software II", requisitos: [33], columna: 5, cuatrimestre: 2 },
 
     // Optativos (37 a 47)
@@ -94,15 +95,17 @@ function renderMalla() {
         "Inglés"
     ];
 
-    const columnas = titulosColumnas.map(titulo => crearColumna(titulo));
-
-    columnas.forEach(col => {
+    // Crear columnas y subsecciones
+    const columnas = titulosColumnas.map(titulo => {
+        const col = crearColumna(titulo);
         const sub1 = crearSubseccion("Primer Cuatrimestre");
         const sub2 = crearSubseccion("Segundo Cuatrimestre");
         col.appendChild(sub1);
         col.appendChild(sub2);
+        return col;
     });
 
+    // Agregar ramos en subsección correspondiente
     ramos.forEach(ramo => {
         const div = document.createElement("div");
         div.classList.add("ramo");
