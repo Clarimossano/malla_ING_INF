@@ -37,10 +37,9 @@ h1 {
     color: #b30059;
     margin-bottom: 10px;
     font-size: 1.1em;
-    padding-bottom: 5px;
+    /* Quitar subrayado */
 }
 
-/* Subsecciones para cuatrimestres */
 .subseccion {
     display: flex;
     flex-direction: column;
@@ -90,5 +89,14 @@ h1 {
     opacity: 1;
     box-shadow: none;
     cursor: pointer;
+}
+
+/* Contador de optativos */
+.contador-optativos {
+    color: #b30059;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
 }
 
