@@ -40,6 +40,20 @@ h1 {
     padding-bottom: 5px;
 }
 
+.subseccion h3 {
+    color: #b30059;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    border-bottom: 1.5px solid #d81b60;
+    font-size: 1em;
+}
+
+.subseccion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .ramo {
     background-color: #880e4f; /* rosa oscuro */
     border: 2px solid #d81b60;
@@ -71,6 +85,6 @@ h1 {
     text-decoration: line-through;
     opacity: 1;
     box-shadow: none;
-    cursor: pointer; /* sigue siendo clickeable para desmarcar */
+    cursor: pointer; /* para poder desmarcar */
 }
 
