@@ -1,81 +1,68 @@
-const courses = [
-    // id, nombre, requisitos (array de ids)
-    { id: 1, name: "Introducción a la Programación", reqs: [] },
-    { id: 2, name: "Álgebra Lineal", reqs: [] },
-    { id: 3, name: "Organización de computadoras", reqs: [] },
-    { id: 4, name: "Análisis Matemático I", reqs: [] },
-    { id: 5, name: "Metodología de la Programación", reqs: [1] },
-    { id: 6, name: "Análisis Matemático II", reqs: [4] },
-    { id: 7, name: "Física Mecánica", reqs: [2,4] },
-    { id: 8, name: "Estructura de Datos", reqs: [1] },
-    { id: 9, name: "Matemática Discreta", reqs: [2] },
-    { id: 10, name: "Teoría de la Información", reqs: [3] },
-    { id: 11, name: "Desarrollo Sistemático de Programas", reqs: [5,8] },
-    { id: 12, name: "Probabilidades y Estadística", reqs: [2,6] },
-    { id: 13, name: "Electricidad y Magnetismo", reqs: [7] },
-    { id: 14, name: "Bases de Datos", reqs: [5,8] },
-    { id: 15, name: "Programación Concurrente", reqs: [5,8] },
-    { id: 16, name: "Cálculo Numérico", reqs: [6] },
-    { id: 17, name: "Lógica Computacional", reqs: [2] },
-    { id: 18, name: "Sistemas Operativos I", reqs: [3,5,8] },
-    { id: 19, name: "Org. Empresarial y Negocios", reqs: [5,8] },
-    { id: 20, name: "Modelado Orientado a Objetos", reqs: [15] },
-    { id: 21, name: "Cursos optativos 90hs", reqs: [] },
-    { id: 22, name: "Teoría de Autómatas", reqs: [8,17] },
-    { id: 23, name: "Sistemas Operativos II", reqs: [18] },
-    { id: 24, name: "Métodos de Simulación", reqs: [12,16] },
-    { id: 25, name: "Formulación y Proyectos", reqs: [19] },
-    { id: 26, name: "Calidad y Testing", reqs: [20] },
-    { id: 27, name: "Arquitectura de Redes", reqs: [23] },
-    { id: 28, name: "Ingeniería del Conocimiento", reqs: [17,20] },
-    { id: 29, name: "Arq. Computadoras Paralelas", reqs: [23,27] },
-    { id: 30, name: "Sistemas de Información", reqs: [20] },
-    { id: 31, name: "Cursos optativos 180hs", reqs: [] },
-    { id: 32, name: "Seguridad y Auditoría", reqs: [23] },
-    { id: 33, name: "Ingeniería de Software I", reqs: [30] },
-    { id: 34, name: "Sistemas Inteligentes", reqs: [9,12,16] },
-    { id: 35, name: "Legislación, Ética y Profesional", reqs: [] },
-    { id: 36, name: "Ingeniería de Software II", reqs: [33] },
+const ramos = [
+    { id: 1, nombre: "Introducción a la Programación", requisitos: [], desbloquea: [5, 8] },
+    { id: 2, nombre: "Álgebra Lineal", requisitos: [], desbloquea: [7, 9, 12, 17] },
+    { id: 3, nombre: "Organización de Computadoras", requisitos: [], desbloquea: [10, 18] },
+    { id: 4, nombre: "Análisis Matemático I", requisitos: [], desbloquea: [6, 7] },
+    { id: 5, nombre: "Metodología de la Programación", requisitos: [1], desbloquea: [11, 14, 15, 18, 19] },
+    { id: 6, nombre: "Análisis Matemático II", requisitos: [4], desbloquea: [12, 16] },
+    { id: 7, nombre: "Física Mecánica", requisitos: [2, 4], desbloquea: [13] },
+    { id: 8, nombre: "Estructura de Datos", requisitos: [1], desbloquea: [11, 14, 15, 18, 19, 22] },
+    { id: 9, nombre: "Matemática Discreta", requisitos: [2], desbloquea: [34] },
+    { id: 10, nombre: "Teoría de la Información y la Comunicación", requisitos: [3], desbloquea: [] },
+    { id: 11, nombre: "Desarrollo Sistemático de Programas", requisitos: [5, 8], desbloquea: [] },
+    { id: 12, nombre: "Probabilidades y Estadística", requisitos: [2, 6], desbloquea: [24, 34] },
+    { id: 13, nombre: "Electricidad y Magnetismo", requisitos: [7], desbloquea: [] },
+    { id: 14, nombre: "Bases de Datos", requisitos: [5, 8], desbloquea: [38, 39] },
+    { id: 15, nombre: "Programación Concurrente", requisitos: [5, 8], desbloquea: [20, 40] },
+    { id: 16, nombre: "Cálculo Numérico", requisitos: [6], desbloquea: [24, 34] },
+    { id: 17, nombre: "Lógica Computacional", requisitos: [2], desbloquea: [22, 28] },
+    { id: 18, nombre: "Sistemas Operativos I", requisitos: [3, 5, 8], desbloquea: [23] },
+    { id: 19, nombre: "Organización Empresarial y Modelos de Negocios", requisitos: [5, 8], desbloquea: [25, 44] },
+    { id: 20, nombre: "Modelado Orientado a Objetos", requisitos: [15], desbloquea: [26, 28, 30, 42, 43] },
+    { id: 22, nombre: "Teoría de Autómatas", requisitos: [8, 17], desbloquea: [41] },
+    { id: 23, nombre: "Sistemas Operativos II", requisitos: [18], desbloquea: [27, 29, 32] },
+    { id: 24, nombre: "Métodos de Simulación", requisitos: [12, 16], desbloquea: [] },
+    { id: 25, nombre: "Formulación y Evaluación de Proyectos", requisitos: [19], desbloquea: [] },
+    { id: 26, nombre: "Calidad del Software", requisitos: [20], desbloquea: [] },
+    { id: 27, nombre: "Arquitectura de Redes", requisitos: [23], desbloquea: [29] },
+    { id: 28, nombre: "Ingeniería del Conocimiento", requisitos: [17, 20], desbloquea: [] },
+    { id: 29, nombre: "Arquitectura de Computadoras Paralelas", requisitos: [23, 27], desbloquea: [] },
+    { id: 30, nombre: "Sistemas de Información", requisitos: [20], desbloquea: [33] },
+    { id: 32, nombre: "Seguridad y Auditoría Informática", requisitos: [23], desbloquea: [] },
+    { id: 33, nombre: "Ingeniería de Software I", requisitos: [30], desbloquea: [36] },
+    { id: 34, nombre: "Sistemas Inteligentes", requisitos: [9, 12, 16], desbloquea: [] },
+    { id: 36, nombre: "Ingeniería de Software II", requisitos: [33], desbloquea: [] }
 ];
 
-const state = {};
-const container = document.getElementById("malla");
+// Guarda qué ramos están aprobados
+const aprobados = new Set();
 
-function createSubjects() {
-    courses.forEach(course => {
-        state[course.id] = { approved: false };
+// Render inicial
+function renderMalla() {
+    const contenedor = document.getElementById("malla");
+    contenedor.innerHTML = "";
+
+    ramos.forEach(ramo => {
         const div = document.createElement("div");
-        div.className = "subject";
-        div.innerText = course.name;
-        div.id = `course-${course.id}`;
-        div.onclick = () => approveCourse(course.id);
-        container.appendChild(div);
-    });
-    updateCourses();
-}
+        div.classList.add("ramo");
+        div.textContent = `${ramo.id}. ${ramo.nombre}`;
+        div.dataset.id = ramo.id;
 
-function updateCourses() {
-    courses.forEach(course => {
-        const div = document.getElementById(`course-${course.id}`);
-        const unlocked = course.reqs.every(req => state[req].approved);
-        if (state[course.id].approved) {
-            div.classList.add("approved");
-            div.classList.remove("unlocked");
-        } else if (unlocked) {
-            div.classList.add("unlocked");
-        } else {
-            div.classList.remove("unlocked");
+        if (aprobados.has(ramo.id)) {
+            div.classList.add("aprobado");
+        } else if (ramo.requisitos.every(id => aprobados.has(id))) {
+            div.classList.add("activo");
+            div.onclick = () => aprobarRamo(ramo.id);
         }
+
+        contenedor.appendChild(div);
     });
 }
 
-function approveCourse(id) {
-    const course = courses.find(c => c.id === id);
-    const canApprove = course.reqs.every(req => state[req].approved);
-    if (!state[id].approved && canApprove) {
-        state[id].approved = true;
-        updateCourses();
-    }
+function aprobarRamo(id) {
+    aprobados.add(id);
+    renderMalla();
 }
 
-createSubjects();
+renderMalla();
+
