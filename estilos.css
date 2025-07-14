@@ -23,13 +23,14 @@ h1 {
 .columna {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     flex: 1;
     min-width: 160px;
-    border: 2px solid #d81b60; /* borde rosa */
-    border-radius: 15px;       /* bordes redondeados */
-    padding: 15px;             /* espacio interno */
-    background-color: #fff0f5; /* fondo muy claro rosa */
+    border: 2px solid #d81b60;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #fff0f5;
+    box-sizing: border-box;
 }
 
 .columna h2 {
@@ -40,18 +41,22 @@ h1 {
     padding-bottom: 5px;
 }
 
-.subseccion h3 {
-    color: #b30059;
-    margin-top: 10px;
-    margin-bottom: 8px;
-    border-bottom: 1.5px solid #d81b60;
-    font-size: 1em;
-}
-
+/* Subsecciones para cuatrimestres */
 .subseccion {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #d81b60;
+}
+
+.subseccion h3 {
+    color: #b30059;
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    font-weight: 600;
+    text-align: center;
+    user-select: none;
 }
 
 .ramo {
@@ -65,8 +70,8 @@ h1 {
     text-align: center;
     font-size: 0.9em;
     color: white;
-    box-shadow: 0 2px 5px rgba(136, 14, 79, 0.5); /* sombra rosa */
-    user-select: none; /* no seleccionable */
+    box-shadow: 0 2px 5px rgba(136, 14, 79, 0.5);
+    user-select: none;
 }
 
 .ramo.activo {
@@ -81,10 +86,10 @@ h1 {
 
 .ramo.aprobado {
     background-color: #f8bbd0; /* rosa claro */
-    color: #880e4f;            /* texto rosa oscuro */
+    color: #880e4f;
     text-decoration: line-through;
     opacity: 1;
     box-shadow: none;
-    cursor: pointer; /* para poder desmarcar */
+    cursor: pointer;
 }
 
