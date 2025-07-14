@@ -1,1 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    color: #333;
+    padding: 20px;
+}
 
+h1 {
+    text-align: center;
+    color: #c2185b;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.subject {
+    width: 200px;
+    padding: 10px;
+    background-color: #f06292;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.subject.unlocked {
+    opacity: 1;
+    box-shadow: 0 0 10px #f48fb1;
+}
+
+.subject.approved {
+    background-color: #ad1457;
+    box-shadow: 0 0 15px #ec407a;
+}
+
+.subject:hover {
+    transform: scale(1.05);
+}
