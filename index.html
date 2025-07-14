@@ -4,47 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Malla Curricular Interactiva</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .semester { margin-bottom: 20px; }
-        .subject { 
-            display: inline-block; 
-            padding: 10px 15px; 
-            margin: 5px; 
-            background: #4CAF50; 
-            color: white; 
-            border-radius: 8px; 
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .subject:hover { transform: scale(1.1); }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <h1>Malla Curricular Interactiva</h1>
+    <div id="malla" class="grid-container"></div>
 
-    <div id="malla">
-        <div class="semester">
-            <h3>Primer Semestre</h3>
-            <div class="subject" onclick="showInfo('Matemática I')">Matemática I</div>
-            <div class="subject" onclick="showInfo('Introducción a la Programación')">Intro a Programación</div>
-            <div class="subject" onclick="showInfo('Física I')">Física I</div>
-        </div>
-        <div class="semester">
-            <h3>Segundo Semestre</h3>
-            <div class="subject" onclick="showInfo('Matemática II')">Matemática II</div>
-            <div class="subject" onclick="showInfo('Programación Avanzada')">Programación Avanzada</div>
-            <div class="subject" onclick="showInfo('Física II')">Física II</div>
-        </div>
-    </div>
-
-    <div id="info" style="margin-top: 30px; padding: 15px; border: 1px solid #ccc;"></div>
-
-    <script>
-        function showInfo(subject) {
-            const infoBox = document.getElementById("info");
-            infoBox.innerHTML = `<h4>${subject}</h4><p>Información sobre ${subject} (requisitos, créditos, etc.)</p>`;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
