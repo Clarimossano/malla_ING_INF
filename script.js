@@ -61,7 +61,20 @@ const ramos = [
     { id:49, nombre: "Nivel aptitud Inglés (R2)", requisitos: [], columna: 7, cuatrimestre: 2 }
 ];
 
-const aprobados = new Set();
+let aprobados = new Set();
+
+// Cargar desde localStorage
+function cargarAprobados() {
+    const data = localStorage.getItem("aprobados");
+    if (data) {
+        aprobados = new Set(JSON.parse(data));
+    }
+}
+
+// Guardar en localStorage
+function guardarAprobados() {
+    localStorage.setItem("aprobados", JSON.stringify([...aprobados]));
+}
 
 function crearColumna(titulo, esOptativo = false, esIngles = false) {
     const div = document.createElement("div");
@@ -94,18 +107,13 @@ function renderMalla() {
     contenedor.innerHTML = "";
 
     const titulosColumnas = [
-        "1er Año",
-        "2do Año",
-        "3er Año",
-        "4to Año",
-        "5to Año",
-        "Optativos",
-        "Inglés"
+        "1er Año", "2do Año", "3er Año",
+        "4to Año", "5to Año", "Optativos", "Inglés"
     ];
 
     const columnas = titulosColumnas.map(titulo => {
         if (titulo === "Optativos") {
-            return crearColumna(titulo, true, false);
+            return crearColumna(titulo, true);
         } else if (titulo === "Inglés") {
             return crearColumna(titulo, false, true);
         } else {
@@ -138,16 +146,10 @@ function renderMalla() {
         }
 
         const col = columnas[ramo.columna - 1];
-
-        if (ramo.columna === 6) {
-            // Optativos sin subsección
-            col.appendChild(div);
-        } else if (ramo.columna === 7) {
-            // Inglés sin subsección
+        if (ramo.columna === 6 || ramo.columna === 7) {
             col.appendChild(div);
         } else {
-            // Las demás columnas con subsección por cuatrimestre
-            const subContenedor = ramo.cuatrimestre === 1 
+            const subContenedor = ramo.cuatrimestre === 1
                 ? col.querySelector(".subseccion:nth-child(2)")
                 : col.querySelector(".subseccion:nth-child(3)");
             subContenedor.appendChild(div);
@@ -169,7 +171,10 @@ function toggleRamo(id) {
     } else {
         aprobados.add(id);
     }
+    guardarAprobados();
     renderMalla();
 }
 
+// Al cargar la página
+cargarAprobados();
 renderMalla();
