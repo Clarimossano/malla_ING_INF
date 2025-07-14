@@ -28,16 +28,16 @@ const ramos = [
     { id:23, nombre: "Sistemas Operativos II", requisitos: [18], columna: 3, cuatrimestre: 2 },
     { id:24, nombre: "Métodos de Simulación", requisitos: [12,16], columna: 3, cuatrimestre: 2 },
 
-    // 4to año
+   // 4to año (id 25 a 32)
     { id:25, nombre: "Formulación y Proyectos", requisitos: [19], columna: 4, cuatrimestre: 1 },
     { id:26, nombre: "Calidad Software", requisitos: [20], columna: 4, cuatrimestre: 1 },
     { id:27, nombre: "Arquitectura de Redes", requisitos: [23], columna: 4, cuatrimestre: 2 },
     { id:28, nombre: "Ingeniería del Conocimiento", requisitos: [17,20], columna: 4, cuatrimestre: 2 },
+    { id:29, nombre: "Arq. Computadoras Paralelas", requisitos: [23,27], columna: 4, cuatrimestre: 1 },
+    { id:30, nombre: "Sistemas de Información", requisitos: [20], columna: 4, cuatrimestre: 1 },
+    { id:32, nombre: "Seguridad y Auditoría", requisitos: [23], columna: 4, cuatrimestre: 2 },
 
-    // 5to año
-    { id:29, nombre: "Arq. Computadoras Paralelas", requisitos: [23,27], columna: 5, cuatrimestre: 1 },
-    { id:30, nombre: "Sistemas de Información", requisitos: [20], columna: 5, cuatrimestre: 1 },
-    { id:32, nombre: "Seguridad y Auditoría", requisitos: [23], columna: 5, cuatrimestre: 2 },
+    // 5to año (id 33 a 36)
     { id:33, nombre: "Ingeniería Software I", requisitos: [30], columna: 5, cuatrimestre: 2 },
     { id:34, nombre: "Sistemas Inteligentes", requisitos: [9,12,16], columna: 5, cuatrimestre: 2 },
     { id:36, nombre: "Ingeniería Software II", requisitos: [33], columna: 5, cuatrimestre: 2 },
