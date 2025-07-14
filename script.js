@@ -63,7 +63,7 @@ const ramos = [
 
 const aprobados = new Set();
 
-function crearColumna(titulo, esOptativo = false) {
+function crearColumna(titulo, esOptativo = false, esIngles = false) {
     const div = document.createElement("div");
     div.classList.add("columna");
     const h2 = document.createElement("h2");
@@ -105,8 +105,9 @@ function renderMalla() {
 
     const columnas = titulosColumnas.map(titulo => {
         if (titulo === "Optativos") {
-            // Optativos sin subsecciones
-            return crearColumna(titulo, true);
+            return crearColumna(titulo, true, false);
+        } else if (titulo === "Inglés") {
+            return crearColumna(titulo, false, true);
         } else {
             const col = crearColumna(titulo);
             const sub1 = crearSubseccion("Primer Cuatrimestre");
@@ -139,9 +140,13 @@ function renderMalla() {
         const col = columnas[ramo.columna - 1];
 
         if (ramo.columna === 6) {
-            // Optativos sin divisiones
+            // Optativos sin subsección
+            col.appendChild(div);
+        } else if (ramo.columna === 7) {
+            // Inglés sin subsección
             col.appendChild(div);
         } else {
+            // Las demás columnas con subsección por cuatrimestre
             const subContenedor = ramo.cuatrimestre === 1 
                 ? col.querySelector(".subseccion:nth-child(2)")
                 : col.querySelector(".subseccion:nth-child(3)");
