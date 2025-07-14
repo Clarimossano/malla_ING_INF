@@ -95,7 +95,13 @@ function renderMalla() {
             div.classList.add("aprobado");
         } else if (ramo.requisitos.every(id => aprobados.has(id))) {
             div.classList.add("activo");
-            div.onclick = () => aprobarRamo(ramo.id);
+            div.onclick = () => toggleRamo(ramo.id);
+        }
+
+        // Para que los aprobados también puedan desmarcarse
+        if (aprobados.has(ramo.id)) {
+            div.classList.add("activo");
+            div.onclick = () => toggleRamo(ramo.id);
         }
 
         columnas[ramo.columna - 1].appendChild(div);
@@ -104,8 +110,12 @@ function renderMalla() {
     columnas.forEach(col => contenedor.appendChild(col));
 }
 
-function aprobarRamo(id) {
-    aprobados.add(id);
+function toggleRamo(id) {
+    if (aprobados.has(id)) {
+        aprobados.delete(id);  // desmarcar
+    } else {
+        aprobados.add(id);     // marcar
+    }
     renderMalla();
 }
 
