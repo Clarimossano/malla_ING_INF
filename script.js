@@ -130,21 +130,29 @@ function renderMalla() {
     ramos.forEach(ramo => {
         const div = document.createElement("div");
         div.classList.add("ramo");
-        div.textContent = `${ramo.id}. ${ramo.nombre}`;
+
+        // Texto y tooltip para optativas
+        let texto = `${ramo.id}. ${ramo.nombre}`;
+        if (ramo.id >= 37 && ramo.id <= 43) {
+            texto += " (90 hs)";
+            div.title = "Aporta 90 horas optativas";
+        } else if (ramo.id >= 44 && ramo.id <= 47) {
+            texto += " (60 hs)";
+            div.title = "Aporta 60 horas optativas";
+        }
+        div.textContent = texto;
         div.dataset.id = ramo.id;
 
+        // Estado visual y funcionalidad
         if (aprobados.has(ramo.id)) {
-            div.classList.add("aprobado");
+            div.classList.add("aprobado", "activo");
+            div.onclick = () => toggleRamo(ramo.id);
         } else if (ramo.requisitos.every(id => aprobados.has(id))) {
             div.classList.add("activo");
             div.onclick = () => toggleRamo(ramo.id);
         }
 
-        if (aprobados.has(ramo.id)) {
-            div.classList.add("activo");
-            div.onclick = () => toggleRamo(ramo.id);
-        }
-
+        // Agregar a columna
         const col = columnas[ramo.columna - 1];
         if (ramo.columna === 6 || ramo.columna === 7) {
             col.appendChild(div);
@@ -158,18 +166,19 @@ function renderMalla() {
 
     // Actualizar contador optativos
     const horasOptativas = Array.from(aprobados)
-    .filter(id => id >= 37 && id <= 47)
-    .reduce((total, id) => {
-        if (id >= 37 && id <= 43) {
-            return total + 90;
-        } else {
-            return total + 60;
-        }
-    }, 0);
+        .filter(id => id >= 37 && id <= 47)
+        .reduce((total, id) => {
+            if (id >= 37 && id <= 43) {
+                return total + 90;
+            } else {
+                return total + 60;
+            }
+        }, 0);
 
     const contadorDiv = columnas[5].querySelector(".contador-optativos");
     contadorDiv.textContent = `Horas optativas aprobadas: ${horasOptativas} / 270 hs`;
 
+    // Mostrar todo en pantalla
     columnas.forEach(col => contenedor.appendChild(col));
 }
 
