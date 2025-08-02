@@ -158,7 +158,15 @@ function renderMalla() {
 
     // Actualizar contador optativos
     const horasOptativas = Array.from(aprobados)
-        .filter(id => id >= 37 && id <= 47).length * 30;
+    .filter(id => id >= 37 && id <= 47)
+    .reduce((total, id) => {
+        if (id >= 37 && id <= 43) {
+            return total + 90;
+        } else {
+            return total + 60;
+        }
+    }, 0);
+
     const contadorDiv = columnas[5].querySelector(".contador-optativos");
     contadorDiv.textContent = `Horas optativas aprobadas: ${horasOptativas} / 270 hs`;
 
